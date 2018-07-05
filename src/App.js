@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
-import { getTasksAction } from './actions';
+import { getTasksAction, setTaskStateAction } from './actions';
 
-const urgencyMarks = ['critical.svg', 'major.svg', 'major.svg', 'neutral.png', 'trivial.svg', 'minor.svg', 'minor.svg'];
+const urgencyMarks = ['critical.svg', 'major.svg', 'high.svg', 'neutral.png', 'small.svg', 'minor.svg', 'trivial.svg'];
 
 class App extends Component {
   state = { hideDone: true }
@@ -16,6 +16,11 @@ class App extends Component {
   }
 
   toggleShowDone = () => this.setState(prevState => ({ hideDone: !prevState.hideDone }))
+
+  setTaskState = (taskId, state) => {
+    const { setTaskState } = this.props;
+    setTaskState(taskId, state);
+  }
 
   render () {
     const { tasks } = this.props;
@@ -28,7 +33,11 @@ class App extends Component {
       <div className='tasks'>
         { tasks.map(task => (!hideDone || (task.state === 'todo')) && <div key={ task.id } className={ task.state }>
           <img src={ `style/${urgencyMarks[task.urgency - 1]}` } alt={ task.urgency } title={ task.added } />
-          <div>{ task.text }</div>
+          <div>
+            { task.text }
+            { (task.state === 'todo') && <img src='style/ok.png' alt='Finish' onClick={ () => this.setTaskState(task.id, 'done') } /> }
+            { (task.state === 'done') && <img src='style/enable.png' alt='ReEnable' onClick={ () => this.setTaskState(task.id, 'todo') } /> }
+          </div>
           <em dangerouslySetInnerHTML={ {__html: task.details } } />
         </div>) }
       </div>
@@ -43,6 +52,9 @@ App.propTypes = {
 
 const mapStateToProps = ({ tasks }) => ({ tasks });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ getTasks: getTasksAction }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({
+  getTasks: getTasksAction,
+  setTaskState: setTaskStateAction
+}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
