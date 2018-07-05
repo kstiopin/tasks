@@ -1,0 +1,31 @@
+{
+  "name": "kstasks",
+  "version": "1.0.0",
+  "description": "My Tasks",
+  "main": "index.html",
+  "scripts": {
+    "start": "webpack-dev-server --progress --colors",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/Kirill_Stiopin/tasks.git"
+  },
+  "keywords": [
+    "tasks"
+  ],
+  "author": "kstiopin",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-react-app": "^3.1.0",
+    "prop-types": "^15.5.6",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.1",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-saga": "^0.16.0",
+    "webpack": "^2.5.0"
+  }
+}
