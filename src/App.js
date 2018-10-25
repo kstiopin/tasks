@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
+// actions
 import { getTasksAction, setTaskStateAction } from './actions';
+// style
+import '../style/style.less';
 
 const urgencyMarks = ['critical.svg', 'major.svg', 'high.svg', 'neutral.png', 'small.svg', 'minor.svg', 'trivial.svg'];
 
