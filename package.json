@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/Kirill_Stiopin/tasks.git"
+    "url": "git+ssh://git@github.com:kstiopin/tasks.git"
   },
   "keywords": [
     "tasks"
